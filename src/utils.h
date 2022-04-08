@@ -1,7 +1,12 @@
 #pragma once
 
-#include "basic.h"
 #include "state.h"
+
+float removePercentage(float value, float percentage)
+{
+    auto result = value - (value * percentage / 100);
+    return result;
+}
 
 void changeLed(int i, bool isOn)
 {
@@ -39,5 +44,16 @@ void getBtnsClick(bool btnsRes[])
             state.isBtnDown[i] = false;
             btnsRes[i] = false;
         }
+    }
+}
+
+void blink(ulong durationMs, int repeat)
+{
+    for (int i = 0; i < repeat; i++)
+    {
+        changeLeds(true);
+        delay(durationMs);
+        changeLeds(false);
+        delay(durationMs);
     }
 }

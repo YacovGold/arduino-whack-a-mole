@@ -5,7 +5,7 @@ stateStruct state;
 void setup()
 {
   Serial.begin(9600);
-  randomSeed(analogRead(btns[0]));
+  randomSeed(analogRead(A5));
   for (int i = 0; i < BTNS_COUNT; i++)
   {
     pinMode(btns[i], INPUT_PULLUP);
@@ -15,27 +15,9 @@ void setup()
     pinMode(leds[i], OUTPUT);
   }
 
-  changeLeds(true);
-  delay(200);
-  changeLeds(false);
+  blink(BLINK_DURATION_MS, 1);
+
   state.lastLedOnMs = millis();
-}
-
-void processBtns()
-{
-  bool btnsClick[BTNS_COUNT];
-  getBtnsClick(btnsClick);
-
-  for (int i = 0; i < BTNS_COUNT; i++)
-  {
-    if (btnsClick[i] == true && state.isLedOn[i] == true)
-    {
-      changeLed(i, false);
-      makeHarder();
-      state.score++;
-      Serial.println(state.score);
-    }
-  }
 }
 
 void loop()
