@@ -80,7 +80,7 @@ void processBtns()
       if (state.isLedOn[i] == true)
       {
         changeLed(i, false);
-        state.score += SCORE_INCREMENT_PER_GOOD_CLICK;
+        state.score += SCORE_INCREMENT_PER_RIGHT_CLICK;
         Serial.println(state.score);
 
         if (state.score >= state.currentLevel * SCORE_NEEDED_TO_LEVEL_UP)
@@ -92,7 +92,7 @@ void processBtns()
       }
       else
       { // btn cliked but led is off
-        state.score -= SCORE_DECREMENT_PER_BAD_CLICK;
+        state.score -= SCORE_DECREMENT_PER_WRONG_CLICK;
       }
     }
   }
